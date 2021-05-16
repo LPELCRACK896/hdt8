@@ -1,9 +1,11 @@
 import java.io.*;
 import java.util.*;
+
 public class Lector {
     public ArrayList<Paciente> allPacientes;
-    public void Lectura(){
-        ArrayList<Paciente> allPacientes= new ArrayList<>();
+
+    public void Lectura() {
+        ArrayList<Paciente> allPacientes = new ArrayList<>();
         File archivo = null;
         FileReader fr = null;
         BufferedReader br = null;
@@ -14,7 +16,7 @@ public class Lector {
             fr = new FileReader(archivo);
             br = new BufferedReader(fr);
             String bfRead;
-            while((bfRead = br.readLine() )!= null) {
+            while ((bfRead = br.readLine()) != null) {
                 String separador = ",";
                 String[] linea = bfRead.split(separador);
                 System.out.println(linea[2]);

@@ -1,8 +1,10 @@
 import java.util.Arrays;
 import java.util.Vector;
+
 public class VectorHeap {
     private Vector<Paciente> cola = new Vector<>();
-    private int size=0;
+    private int size = 0;
+
     private int getLeftChildIndex(int parentIndex) {
         return 2 * parentIndex + 1;
     }
@@ -41,12 +43,10 @@ public class VectorHeap {
 
     private void swap(int indexOne, int indexTwo) {
         Paciente temp = cola.get(indexOne);
-        cola.insertElementAt( cola.get(indexTwo), indexOne);
-        cola.insertElementAt( temp, indexTwo);
+        cola.insertElementAt(cola.get(indexTwo), indexOne);
+        cola.insertElementAt(temp, indexTwo);
 
     }
-
-
 
     public Paciente peek() {
         if (isEmpty()) return null;
@@ -58,36 +58,42 @@ public class VectorHeap {
     public Paciente poll() {
         if (isEmpty()) return null;
         Paciente pacienteARetornar = cola.get(0);
-        cola.insertElementAt(cola.get(size-1),0);
+        cola.insertElementAt(cola.get(size - 1), 0);
         size--;
         heapifyDown();
         return pacienteARetornar;
     }
-    public void add(Paciente paciente){
+
+    public void add(Paciente paciente) {
         cola.insertElementAt(paciente, size);
         size++;
         heapifyUp();
 
     }
-    public void heapifyUp(){
-        int index  = size-1;
-        while (hasParent(index) && parent(index).compareTo(cola.get(index)) > 0){
+
+    public void heapifyUp() {
+        int index = size - 1;
+        while (hasParent(index) && parent(index).compareTo(cola.get(index)) > 0) {
             swap(getParentIndex(index), index);
-            index= getParentIndex(index);
+            index = getParentIndex(index);
         }
     }
-    public void heapifyDown(){
-        int index=0;
-        while (hasLeftChild(index)){
+
+    public void heapifyDown() {
+        int index = 0;
+        while (hasLeftChild(index)) {
             int smallerChildIndex = getLeftChildIndex(index);
-            if(hasRightChild(index) && rightChild(index).compareTo(leftChild(index)) < 0){
+            if (hasRightChild(index) && rightChild(index).compareTo(leftChild(index)) < 0) {
                 smallerChildIndex = getRightChildIndex(index);
             }
-            if(cola.get(index).compareTo(cola.get(smallerChildIndex))<0) break;
+            if (cola.get(index).compareTo(cola.get(smallerChildIndex)) < 0) break;
             else swap(index, smallerChildIndex);
             index = smallerChildIndex;
         }
     }
-    public boolean isEmpty(){return size==0;}
+
+    public boolean isEmpty() {
+        return size == 0;
+    }
 
 }
