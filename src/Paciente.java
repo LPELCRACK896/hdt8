@@ -20,7 +20,7 @@ public class Paciente implements Comparable<Paciente>{
     @Override
     //Return 1, si es mayor al otroPaciente, 0 si es menor o igual
     public int compareTo(Paciente otroPaciente) {
-        return (numPriority>otroPaciente.getNumPriority())?1:0;
+        return (numPriority>otroPaciente.getNumPriority())?1:-1;
     }
     public String toString(){
         return "Nombre: "+nombre+"\nPrioridad: "+prioridad+"("+numPriority+")\nCondicion:  "+condicionOEnfermedad;
