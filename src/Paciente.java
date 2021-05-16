@@ -3,7 +3,7 @@ public class Paciente implements Comparable<Paciente>{
     private int numPriority;
     private String nombre;
     private String condicionOEnfermedad;
-
+    public int posicionEnCola;
     public Paciente(String nombre, String condicionOEnfermedad, String prioridad){
         this.prioridad=prioridad;
         this.nombre=nombre;
