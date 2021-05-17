@@ -1,10 +1,15 @@
 public class Paciente implements Comparable<Paciente> {
-    private String prioridad;
-    private int numPriority;
-    private String nombre;
-    private String condicionOEnfermedad;
+    public String prioridad;
+    public int numPriority;
+    public String nombre;
+    public String condicionOEnfermedad;
     public int posicionEnCola;
 
+    /**
+     * @param nombre               ingresa el nomobre del paciente
+     * @param condicionOEnfermedad ingresa la condicion del paciente
+     * @param prioridad            ingresa la priodida de su caso
+     */
     public Paciente(String nombre, String condicionOEnfermedad, String prioridad) {
         this.prioridad = prioridad;
         this.nombre = nombre;
@@ -19,44 +24,25 @@ public class Paciente implements Comparable<Paciente> {
     }
 
     @Override
-    //Return 1, si es mayor al otroPaciente, 0 si es menor o igual
+    /**
+     * Return 1, si es mayor al otroPaciente, 0 si es igual, -1 si es menor
+     */
     public int compareTo(Paciente otroPaciente) {
-        return (numPriority > otroPaciente.getNumPriority()) ? 1 : -1;
+        return Integer.compare(numPriority, otroPaciente.getNumPriority());
     }
 
+    /**
+     * @return devuelve los datos importantes del paciente
+     */
     public String toString() {
-        return "Nombre: " + nombre + "\nPrioridad: " + prioridad + "(" + numPriority + ")\nCondicion:  " + condicionOEnfermedad;
+        return "\nNombre: " + nombre + "\nPrioridad: " + prioridad + "(" + numPriority + ")\nCondicion:  " + condicionOEnfermedad;
     }
 
-    public String getPrioridad() {
-        return prioridad;
-    }
-
-    public void setPrioridad(String prioridad) {
-        this.prioridad = prioridad;
-    }
-
+    /**
+     * @return devuelve el numero de prioridad del paciente
+     */
     public int getNumPriority() {
         return numPriority;
     }
 
-    public void setNumPriority(int numPriority) {
-        this.numPriority = numPriority;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getCondicionOEnfermedad() {
-        return condicionOEnfermedad;
-    }
-
-    public void setCondicionOEnfermedad(String condicionOEnfermedad) {
-        this.condicionOEnfermedad = condicionOEnfermedad;
-    }
 }

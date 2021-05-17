@@ -1,28 +1,23 @@
+import java.util.PriorityQueue;
 import java.util.Scanner;
 
-/**
- * @author Luis Gonzalez
- */
-public class main {
-
+public class main2_JCF {
     public static void main(String[] args) {
-        VectorHeap MiCola = new VectorHeap();
+        PriorityQueue<Paciente> cola = new PriorityQueue<>();
         Lector lector = new Lector();
         lector.Lectura();
         Scanner sc = new Scanner(System.in);
         String opc;
         boolean salir = false;
-        MiCola.addAll(lector.getAllPacientes());
-
+        cola.addAll(lector.getAllPacientes());
         while (!salir) {
             while (true) {
                 System.out.println("Bienvenido al programa de atención de pacientes\n¿Qué desea hacer?");
                 System.out.println("\t1. Ver la cola actual\n" +
-                        "\t2. Elimniar paciente\n" +
-                        "\t3. Agregar paciente\n" +
-                        "\t4. Reiniciar cola \n" +
-                        "\t5. Atender paciente \n" +
-                        "\t6. Salir \n");
+                        "\t2. Agregar paciente\n" +
+                        "\t3. Reiniciar cola \n" +
+                        "\t4. Atender paciente \n" +
+                        "\t5. Salir \n");
                 System.out.println("Ingrese indice...");
                 opc = sc.nextLine();
                 if (opc.equals("1") || opc.equals("2") || opc.equals("3") || opc.equals("4") || opc.equals("5")) break;
@@ -31,10 +26,10 @@ public class main {
             switch (opc) {
                 case "1": {
                     //Muestra al cola
-                    System.out.println(MiCola.verCola());
+                    System.out.println(cola.toString());
                     break;
                 }
-                case "3": {
+                case "2": {
                     String nombreNuevo = "";
                     String prioridad = "";
                     String condicion = "";
@@ -50,38 +45,21 @@ public class main {
                         else System.out.println("Prioridad no valida");
                     }
                     Paciente newPaciente = new Paciente(nombreNuevo, condicion, prioridad);
-                    MiCola.add(newPaciente);
+                    //MiCola.add(newPaciente);
                     break;
                 }
-                case "2": {
-                    if (!MiCola.isEmpty()) {
-                        System.out.println("Ingrese la posicion del elemento que desea eliminar");
-                        String elim;
-                        int elimina = -1;
-                        elim = sc.nextLine();
-                        try {
-                            elimina = Integer.parseInt(elim);
-                        } catch (Exception e) {
-                            System.out.println("Ingrese un número");
-                        }
-                        if (elimina <= MiCola.getSize() && elimina >= 1) {
-                            MiCola.eliminar(elimina - 1);
-                            System.out.println("Paciente en cola eliminado con exito");
-                        } else
-                            System.out.println("Ingrese una posicion valida (numeros del 1 a " + MiCola.getSize() + ")");
-                    } else System.out.println("Cola vacia! Imposible eliminar");
-                    break;
-                }
-                case "4": {
-                    MiCola.reboot(lector.getAllPacientes());
+
+                case "3": {
+                    cola.clear();
+                    cola.addAll(lector.getAllPacientes());
                     System.out.println("Cola reiniciada a los pacientes descritos en el archivo de texto plano\n Todos los pacientes agregados fueron eliminados");
                     break;
                 }
-                case "5": {
-                    MiCola.poll();
+                case "4": {
+                    cola.poll();
                     break;
                 }
-                case "6": {
+                case "5": {
                     System.out.println("Adios!");
                     salir = true;
                     break;
